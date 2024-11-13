@@ -1,13 +1,13 @@
 //Este es el archivo de las interfaces
-
-export interface Customer {
-    id: number;
+export interface Proyect {
+    id?: number;
     nombre: string;
-    casa_matriz: string;
+    clientes: Customer[];
 }
 
-export interface Proyect {
-    id: number;
+export interface Customer {
+    id?: number;
     nombre: string;
+    casa_matriz: string;
 }
 

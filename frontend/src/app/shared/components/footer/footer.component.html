@@ -1,21 +1,28 @@
 <!--Este es un footer-->
-
-<footer class="bg-white rounded-lg shadow m-4 dark:bg-gray-800">
-    <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>
-            All Rights Reserved.
-        </span>
-        <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-            <li>
-                <!-- Estos son los routerLink que llevan a otras ubicaciones -->
-                <a routerLink="/" routerLinkActive="active" class="hover:underline me-4 md:me-6">Home</a>
-            </li>
-            <li>
-                <a routerLink="/records" class="hover:underline me-4 md:me-6">Records</a>
-            </li>
-            <li>
-                <a routerLink="/about" class="hover:underline me-4 md:me-6">About</a>
-            </li>
-        </ul>
-    </div>
-</footer>
+<div class="container">
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 pt-5 mt-5 border-top">
+        <div class="col mb-3">
+            <p class="text-body-secondary">© 2024</p>
+        </div>
+  
+        <div class="col mb-3"></div>
+  
+        <div class="col mb-3">
+            <a class="fs-5 text-black text-decoration-none" routerLink="/">Home</a>
+        </div>
+  
+        <div class="col mb-3">
+            <h5>Records</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a routerLink="/records/get" class="nav-link p-0 text-body-secondary">Get</a></li>
+                <li class="nav-item mb-2"><a routerLink="/records/add" class="nav-link p-0 text-body-secondary">Add</a></li>
+                <li class="nav-item mb-2"><a routerLink="/records/update" class="nav-link p-0 text-body-secondary">Update</a></li>
+                <li class="nav-item mb-2"><a routerLink="/records/delete" class="nav-link p-0 text-body-secondary">Delete</a></li>
+            </ul>
+        </div>
+  
+        <div class="col mb-3">
+            <a class="fs-5 text-black text-decoration-none" routerLink="/about">About</a>
+        </div>
+    </footer>
+</div>

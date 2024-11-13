@@ -1,9 +1,9 @@
-# Proyecto Eureka Semana 3
+# Proyecto Eureka Semana 4
 
-- Crear un proyecto Angular desde cero
-- Agregar componentes al proyecto
-- Configurar las rutas del sitio
-- Acceder a una API Rest por medio de un servicio
+- Modificar un proyecto Angular
+- Agregar módulos al proyecto
+- Agregar nuevas rutas al sitio
+- Uso de formularios para creación de registros
 
 ## Que se evaluara
 

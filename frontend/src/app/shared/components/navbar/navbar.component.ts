@@ -6,10 +6,4 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
-  isMenuOpen: boolean = false;
-
-  toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
-
 }

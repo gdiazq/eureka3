@@ -1,0 +1,89 @@
+<div class="p-4 bg-light rounded shadow-sm">
+    <h1 class="display-5 mb-4">
+      Página para agregar un registro
+    </h1>
+
+    <div class="row">
+        <div class="col">
+
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Nombre del Proyecto</label>
+                    <div class="col-sm-9">
+                        <input type="text"
+                            class="form-control"
+                            formControlName="nombreProyecto"
+                            placeholder="Nombre del proyecto">
+    
+                        <span *ngIf="isFieldRequired('nombreProyecto')" class="form-text text-danger">
+                            Este campo es obligatorio.
+                        </span>
+                        <span *ngIf="isFieldMinLength('nombreProyecto')" class="form-text text-danger">
+                            Debe tener al menos 4 caracteres.
+                        </span>
+                        <span *ngIf="isFieldPattern('nombreProyecto')" class="form-text text-danger">
+                            Debe ser en formato Aabc Aabc.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Nombre del Cliente</label>
+                    <div class="col-sm-9">
+                        <input type="text"
+                            class="form-control"
+                            formControlName="nombreCliente"
+                            placeholder="Nombre del cliente">
+    
+                        <span *ngIf="isFieldRequired('nombreCliente')" class="form-text text-danger">
+                            Este campo es obligatorio.
+                        </span>
+                        <span *ngIf="isFieldMinLength('nombreCliente')" class="form-text text-danger">
+                            Debe tener al menos 4 caracteres.
+                        </span>
+                        <span *ngIf="isFieldPattern('nombreCliente')" class="form-text text-danger">
+                            Debe ser en formato Aabc Aabc.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Nombre de la casa matriz</label>
+                    <div class="col-sm-9">
+                        <input type="text"
+                            class="form-control"
+                            formControlName="casa_matriz"
+                            placeholder="Nombre de la casa matriz">
+    
+                        <span *ngIf="isFieldRequired('casa_matriz')" class="form-text text-danger">
+                            Este campo es obligatorio.
+                        </span>
+                        <span *ngIf="isFieldMinLength('casa_matriz')" class="form-text text-danger">
+                            Debe tener al menos 4 caracteres.
+                        </span>
+                        <span *ngIf="isFieldPattern('casa_matriz')" class="form-text text-danger">
+                            Debe ser en formato Aabc Aabc Aabc.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-primary float-end"
+                                type="submit">
+                            Crear
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="recordAdded" class="alert alert-success mt-3" role="alert">
+                    Registro agregado exitosamente.
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+

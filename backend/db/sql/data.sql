@@ -1,15 +1,25 @@
-INSERT INTO clientes (nombre, casa_matriz)
+INSERT INTO proyectos (nombre)
 VALUES
-    ('Cliente A', 'Casa Matriz A'),
-    ('Cliente B', 'Casa Matriz B'),
-    ('Cliente C', 'Casa Matriz C'),
-    ('Cliente D', 'Casa Matriz D'),
-    ('Cliente E', 'Casa Matriz E');
+    ('Proyecto Alpha'),
+    ('Proyecto Beta'),
+    ('Proyecto Gamma'),
+    ('Proyecto Delta'),
+    ('Proyecto Epsilon');
 
-INSERT INTO proyectos (cliente_id, nombre)
+INSERT INTO clientes (proyecto_id, nombre, casa_matriz)
 VALUES
-    (1, 'Proyecto Alpha'),
-    (2, 'Proyecto Beta'),
-    (3, 'Proyecto Gamma'),
-    (4, 'Proyecto Delta'),
-    (5, 'Proyecto Epsilon');
+    (1, 'Cliente A', 'Casa Matriz A'), 
+    (1, 'Cliente B', 'Casa Matriz B'),
+    (1, 'Cliente C', 'Casa Matriz C'),
+    (2, 'Cliente A', 'Casa Matriz A'),
+    (2, 'Cliente B', 'Casa Matriz B'),
+    (2, 'Cliente C', 'Casa Matriz C'),
+    (3, 'Cliente A', 'Casa Matriz A'),
+    (3, 'Cliente B', 'Casa Matriz B'),
+    (3, 'Cliente C', 'Casa Matriz C'),
+    (4, 'Cliente A', 'Casa Matriz A'),
+    (4, 'Cliente B', 'Casa Matriz B'),
+    (4, 'Cliente C', 'Casa Matriz C'),
+    (5, 'Cliente A', 'Casa Matriz A'),
+    (5, 'Cliente B', 'Casa Matriz B'),
+    (5, 'Cliente C', 'Casa Matriz C');

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.iteureka</groupId>
-	<artifactId>backend</artifactId>
+	<artifactId>backeurekafour</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>backend</name>
+	<name>backeurekafour</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>

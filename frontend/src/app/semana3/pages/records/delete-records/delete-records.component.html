@@ -1,0 +1,41 @@
+<div class="p-4 bg-light rounded shadow-sm">
+    <h1 class="display-5 mb-4">
+      Página para borrar un registro de proyectos
+    </h1>
+
+    <div class="row">
+        <div class="col">
+          
+            <form [formGroup]="deleteForm" (ngSubmit)="deleteRecord()">
+                <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Selecciona el registro</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" formControlName="id">
+                            <option value="" disabled>Seleccione un registro</option>
+                            <option *ngFor="let proyect of proyects" [value]="proyect.id">
+                                {{ proyect.id }}
+                            </option>
+                        </select>
+                        <div *ngIf="deleteForm.get('id')?.touched && deleteForm.get('id')?.invalid" class="form-text text-danger">
+                            Debes seleccionar un registro para eliminar
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-danger float-end" type="submit" [disabled]="deleteForm.invalid">
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+            
+                <div *ngIf="recordDeleted" class="alert alert-success mt-3" role="alert">
+                    Registro eliminado exitosamente.
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+</div>

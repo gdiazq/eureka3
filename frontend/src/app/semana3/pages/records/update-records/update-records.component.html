@@ -1,0 +1,72 @@
+<div class="p-4 bg-light rounded shadow-sm">
+    <h1 class="display-5 mb-4">
+      Página para actualizar un registro
+    </h1>
+
+    <div class="row">
+        <div class="col">
+
+            <form [formGroup]="updateForm" (ngSubmit)="updateRecord()">
+                <!-- Selector de Proyecto -->
+                <div class="mb-3">
+                    <label for="id">Selecciona el proyecto a actualizar</label>
+                    <select id="id" formControlName="id" class="form-select" (change)="loadRecordData()">
+                        <option value="">Seleccione un proyecto</option>
+                        <option *ngFor="let record of records" [value]="record.id">{{ record.nombre }}</option>
+                    </select>
+                    <span *ngIf="updateForm.get('id')?.hasError('required') && updateForm.get('id')?.touched" class="text-danger">Debe seleccionar un proyecto</span>
+                </div>
+        
+                <!-- Campos para Editar Proyecto -->
+                <div *ngIf="selectedProject">
+                    <div class="mb-3">
+                        <label for="nombreProyecto">Nombre del Proyecto</label>
+                        <input type="text" id="nombreProyecto" formControlName="nombreProyecto" class="form-control">
+                        <span *ngIf="isFieldRequired('nombreProyecto')" class="form-text text-danger">
+                            Este campo es obligatorio.
+                        </span>
+                        <span *ngIf="isFieldMinLength('nombreProyecto')" class="form-text text-danger">
+                            Debe tener al menos 4 caracteres.
+                        </span>
+                        <span *ngIf="isFieldPattern('nombreProyecto')" class="form-text text-danger">
+                            Debe ser en formato Aabc Aabc.
+                        </span>
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="nombreCliente">Nombre del Cliente</label>
+                        <input type="text" id="nombreCliente" formControlName="nombreCliente" class="form-control">
+                        <span *ngIf="isFieldRequired('nombreCliente')" class="form-text text-danger">
+                            Este campo es obligatorio.
+                        </span>
+                        <span *ngIf="isFieldMinLength('nombreCliente')" class="form-text text-danger">
+                            Debe tener al menos 4 caracteres.
+                        </span>
+                        <span *ngIf="isFieldPattern('nombreCliente')" class="form-text text-danger">
+                            Debe ser en formato Aabc Aabc.
+                        </span>
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="casa_matriz">Casa Matriz</label>
+                        <input type="text" id="casa_matriz" formControlName="casa_matriz" class="form-control">
+                        <span *ngIf="isFieldRequired('casa_matriz')" class="form-text text-danger">
+                            Este campo es obligatorio.
+                        </span>
+                        <span *ngIf="isFieldMinLength('casa_matriz')" class="form-text text-danger">
+                            Debe tener al menos 4 caracteres.
+                        </span>
+                        <span *ngIf="isFieldPattern('casa_matriz')" class="form-text text-danger">
+                            Debe ser en formato Aabc Aabc Aabc.
+                        </span>
+                    </div>
+        
+                    <button type="submit" class="btn btn-primary">Actualizar Registro</button>
+                </div>
+            </form>
+            <div *ngIf="recordUpdated" class="mt-2 alert alert-success">
+                Registro actualizado correctamente.
+            </div>
+        </div>
+    </div>
+</div>
