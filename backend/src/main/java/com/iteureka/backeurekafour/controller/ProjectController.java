@@ -2,6 +2,7 @@ package com.iteureka.backeurekafour.controller;
 
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,15 +37,16 @@ public class ProjectController {
     }
 
     @PostMapping
-    public ProjectEntity saveProject(@RequestBody ProjectEntity projectEntity) {
-        return projectService.save(projectEntity);
+    public ResponseEntity<Void> createProjectWithCustomers(@RequestBody ProjectEntity project) {
+        projectService.createProjectWithCustomer(project);
+        return ResponseEntity.ok().build(); // Devuelve un 200 OK si se crea correctamente
     }
 
     @PutMapping("/{id}")
     public ProjectEntity updateProject(
         @PathVariable Long id,
-        @RequestBody ProjectEntity projectEntity) {
-            return projectService.put(id, projectEntity);
+        @RequestBody ProjectEntity project) {
+            return projectService.put(id, project);
     }
 
     @DeleteMapping("/{id}")

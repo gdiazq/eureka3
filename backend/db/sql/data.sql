@@ -8,18 +8,18 @@ VALUES
 
 INSERT INTO clientes (proyecto_id, nombre, casa_matriz)
 VALUES
-    (1, 'Cliente A', 'Casa Matriz A'), 
-    (1, 'Cliente B', 'Casa Matriz B'),
-    (1, 'Cliente C', 'Casa Matriz C'),
-    (2, 'Cliente A', 'Casa Matriz A'),
-    (2, 'Cliente B', 'Casa Matriz B'),
-    (2, 'Cliente C', 'Casa Matriz C'),
-    (3, 'Cliente A', 'Casa Matriz A'),
-    (3, 'Cliente B', 'Casa Matriz B'),
-    (3, 'Cliente C', 'Casa Matriz C'),
-    (4, 'Cliente A', 'Casa Matriz A'),
-    (4, 'Cliente B', 'Casa Matriz B'),
-    (4, 'Cliente C', 'Casa Matriz C'),
-    (5, 'Cliente A', 'Casa Matriz A'),
-    (5, 'Cliente B', 'Casa Matriz B'),
-    (5, 'Cliente C', 'Casa Matriz C');
+    (1, 'GlobalTech Solutions', 'Tecnologia Innovadora'),
+    (1, 'HyperByte Enterprises', 'Byte Corporation'),
+    (1, 'QuantumData Systems', 'Quantum Tech Hub'),
+    (2, 'RedNet Consulting', 'RedNex Global'),
+    (2, 'Futurity Innovations', 'Futuris Co'),
+    (2, 'TechSphere Group', 'Sphere Technologies'),
+    (3, 'CyberSolutions Network', 'NetWorx Innovations'),
+    (3, 'BlueCloud Technologies', 'CloudMasters'),
+    (3, 'NextGen Consulting', 'Next Generation Technologies'),
+    (4, 'Stratos Enterprises', 'StratNet Consulting'),
+    (4, 'XenoTech Industries', 'Xenotech Systems'),
+    (4, 'Digix Technologies', 'DigitalX Ventures'),
+    (5, 'InfoTronics Solutions', 'InfoTech Global'),
+    (5, 'Maximus Technologies', 'MaxTech Solutions'),
+    (5, 'CloudStrive Consulting', 'StriveCloud Technologies');

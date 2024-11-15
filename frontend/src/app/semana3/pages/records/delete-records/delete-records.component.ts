@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Proyect } from "../../../interfaces/semana3-interfaces";
 
 import { DeleteRecordsService } from "../../../services/delete-records.services";
+import { ValidatorService } from "../../../services/validator.service";
 
 @Component({
     selector: 'app-delete-records',
@@ -19,10 +20,15 @@ export class DeleteRecordsComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private deleteRecordsService: DeleteRecordsService,
+        private validatorService: ValidatorService
     ) {
         this.deleteForm = this.fb.group({
             id: ['', [Validators.required, Validators.min(1)]]
         });
+    }
+
+    isFieldRequired(field: string): boolean {
+        return this.validatorService.isFieldRequired(this.deleteForm, field);
     }
 
     loadRecords(): void {

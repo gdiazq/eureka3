@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Proyect } from '../../../interfaces/semana3-interfaces';
+import { Customer } from '../../../interfaces/semana3-interfaces';
 
 import { AddRecordsService } from '../../../services/add-records.services';
 import { ValidatorService } from '../../../services/validator.service';
@@ -11,20 +12,23 @@ import { ValidatorService } from '../../../services/validator.service';
     templateUrl: './add-records.component.html'
 })
 
-export class AddRecordsComponent {
+export class AddRecordsComponent implements OnInit {
 
     public myForm: FormGroup = this.fb.group({
+        id: ['', [Validators.required, Validators.min(1)]],
         nombreProyecto: ['', [ Validators.required, Validators.minLength(4), Validators.pattern( this.validatorService.nameProyectPattern) ]],
-        nombreCliente: ['', [ Validators.required, Validators.minLength(4), Validators.pattern( this.validatorService.nameCustomerPattern) ]],
+        nombreCliente: ['', [ Validators.required ]],
         casa_matriz: ['', [ Validators.required, Validators.minLength(4), Validators.pattern( this.validatorService.casaMatrizPattern) ]],
     });
 
-    public addRecords: Proyect[] = [];
+    public proyects: Proyect[] = [];
+    public customers: Customer[] = [];
     public recordAdded: boolean = false;
+    public selectedCustomer: Customer | null = null;
 
     constructor( 
         private fb: FormBuilder,
-        private addRecordsSevice: AddRecordsService,
+        private addRecordsService: AddRecordsService,
         private validatorService: ValidatorService) 
     {}
 
@@ -40,10 +44,44 @@ export class AddRecordsComponent {
         return this.validatorService.isFieldPattern(this.myForm, field);
     }
 
+    ngOnInit(): void {
+        this.loadRecords();
+    }
+
+    loadRecords(): void {
+        this.addRecordsService.getCustomers().subscribe(
+            (data: Customer[]) => {
+                this.customers = data;
+            },
+            (error) => {
+                console.log("Error al conseguir los registros", error);
+            }
+        );
+    }
+
+    loadRecordData(): void {
+        const selectedId = this.myForm.value.id;
+        if (selectedId) {
+            this.addRecordsService.getRecordById(selectedId).subscribe(
+                (data: Customer) => {
+                    this.selectedCustomer = data;
+                    this.myForm.patchValue({
+                        nombreCliente: data.nombre,
+                        nombreProyecto: data.nombre,
+                        casa_matriz: data.casa_matriz
+                    });
+                },
+                (error) => {
+                    console.log("Error al conseguir el registro", error);
+                }
+            );
+        }
+    }
+
     addRecord(proyect: Proyect): void {
-        this.addRecordsSevice.addRecords(proyect).subscribe(
+        this.addRecordsService.addProyect(proyect).subscribe(
             (data: Proyect[]) => {
-                this.addRecords = data;
+                this.proyects = data;
                 this.recordAdded = true;
                 this.myForm.reset();
             },
@@ -52,8 +90,7 @@ export class AddRecordsComponent {
                 this.recordAdded = false;
                 this.myForm.reset();
             }
-        );
-            
+        );  
     }
 
     onSubmit(): void {
@@ -63,11 +100,13 @@ export class AddRecordsComponent {
             return;
         }
 
+        const id = this.myForm.value.id;
         const formValues = this.myForm.value;
         const proyect: Proyect = {
             nombre: formValues.nombreProyecto,
             clientes: [
                 {
+                    id: id,
                     nombre: formValues.nombreCliente,
                     casa_matriz: formValues.casa_matriz
                 }

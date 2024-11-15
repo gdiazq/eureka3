@@ -6,7 +6,8 @@ import { GetRecordsService } from "../../../services/get-records.services";
 
 @Component({
     selector: 'app-get-records',
-    templateUrl: './get-records.component.html'
+    templateUrl: './get-records.component.html',
+    styleUrls: ['./get-records.component.css']
 })
 
 export class GetRecordsComponent implements OnInit {

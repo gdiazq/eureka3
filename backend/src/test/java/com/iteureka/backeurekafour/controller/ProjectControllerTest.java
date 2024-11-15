@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.ResponseEntity;
+
 import java.util.Collections;
 import java.util.Optional;
 
@@ -54,12 +56,18 @@ public class ProjectControllerTest {
 
     // Prueba para el método que guarda un cliente
     @Test
-    void testSaveProject() {
+    void testCreateProjectWithCustomers() {
+        // Arrange
         ProjectEntity project = new ProjectEntity();
-        when(projectService.save(any(ProjectEntity.class))).thenReturn(project);
-        ProjectEntity savedProject = projectController.saveProject(project);
-        assertNotNull(savedProject);
-        verify(projectService, times(1)).save(project);
+        // Puedes configurar el proyecto con datos de prueba si es necesario
+
+        // Act
+        ResponseEntity<Void> response = projectController.createProjectWithCustomers(project);
+
+        // Assert
+        assertNotNull(response);
+        assertEquals(200, response.getStatusCode().value()); // Verifica que el código de estado sea 200 OK
+        verify(projectService, times(1)).createProjectWithCustomer(any(ProjectEntity.class)); // Verifica que se llame al servicio con el proyecto
     }
 
     // Prueba para el método que elimina un cliente por su ID

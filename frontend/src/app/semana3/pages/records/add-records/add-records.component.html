@@ -1,12 +1,23 @@
 <div class="p-4 bg-light rounded shadow-sm">
     <h1 class="display-5 mb-4">
-      Página para agregar un registro
+      Página para agregar un registro de proyectos
     </h1>
 
     <div class="row">
         <div class="col">
 
             <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
+                <div class="mb-3">
+                    <label for="id">Selecciona el cliente</label>
+                    <select id="id" formControlName="id" class="form-select" (change)="loadRecordData()">
+                        <option value="">Seleccione un cliente</option>
+                        <option *ngFor="let customer of customers" [value]="customer.id">{{ customer.nombre }}</option>
+                    </select>
+                    <span *ngIf="isFieldRequired('nombreProyecto')" class="form-text text-danger">
+                        Este campo es obligatorio.
+                    </span>
+                </div>
+
                 <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Nombre del Proyecto</label>
                     <div class="col-sm-9">
@@ -28,32 +39,12 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-3 col-form-label">Nombre del Cliente</label>
-                    <div class="col-sm-9">
-                        <input type="text"
-                            class="form-control"
-                            formControlName="nombreCliente"
-                            placeholder="Nombre del cliente">
-    
-                        <span *ngIf="isFieldRequired('nombreCliente')" class="form-text text-danger">
-                            Este campo es obligatorio.
-                        </span>
-                        <span *ngIf="isFieldMinLength('nombreCliente')" class="form-text text-danger">
-                            Debe tener al menos 4 caracteres.
-                        </span>
-                        <span *ngIf="isFieldPattern('nombreCliente')" class="form-text text-danger">
-                            Debe ser en formato Aabc Aabc.
-                        </span>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Nombre de la casa matriz</label>
                     <div class="col-sm-9">
                         <input type="text"
                             class="form-control"
                             formControlName="casa_matriz"
-                            placeholder="Nombre de la casa matriz">
+                            placeholder="Nombre del proyecto">
     
                         <span *ngIf="isFieldRequired('casa_matriz')" class="form-text text-danger">
                             Este campo es obligatorio.
@@ -62,7 +53,7 @@
                             Debe tener al menos 4 caracteres.
                         </span>
                         <span *ngIf="isFieldPattern('casa_matriz')" class="form-text text-danger">
-                            Debe ser en formato Aabc Aabc Aabc.
+                            Debe ser en formato Aabc Aabc.
                         </span>
                     </div>
                 </div>

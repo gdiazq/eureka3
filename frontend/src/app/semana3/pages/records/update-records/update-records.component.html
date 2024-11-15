@@ -9,30 +9,27 @@
             <form [formGroup]="updateForm" (ngSubmit)="updateRecord()">
                 <!-- Selector de Proyecto -->
                 <div class="mb-3">
-                    <label for="id">Selecciona el proyecto a actualizar</label>
-                    <select id="id" formControlName="id" class="form-select" (change)="loadRecordData()">
-                        <option value="">Seleccione un proyecto</option>
-                        <option *ngFor="let record of records" [value]="record.id">{{ record.nombre }}</option>
+                    <label for="projectId">Selecciona el proyecto a actualizar</label>
+                    <select id="projectId" formControlName="idProyecto" class="form-select" (change)="loadRecordProyect()">
+                        <option class="fw-medium" value="" disabled selected>Seleccione un proyecto</option>
+                        <option *ngFor="let record of records" [value]="record.id">
+                            {{ record.nombre }}
+                        </option>
                     </select>
-                    <span *ngIf="updateForm.get('id')?.hasError('required') && updateForm.get('id')?.touched" class="text-danger">Debe seleccionar un proyecto</span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cliente">Selecciona el cliente</label>
+                    <select id="cliente" formControlName="idCliente" class="form-select" (change)="loadRecordCustomer()">
+                        <option class="fw-medium" value="" disabled selected>Seleccione un cliente</option>
+                        <option *ngFor="let customer of filteredCustomers" [value]="customer.id">
+                            {{ customer.nombre }}
+                        </option>
+                    </select>
                 </div>
         
                 <!-- Campos para Editar Proyecto -->
-                <div *ngIf="selectedProject">
-                    <div class="mb-3">
-                        <label for="nombreProyecto">Nombre del Proyecto</label>
-                        <input type="text" id="nombreProyecto" formControlName="nombreProyecto" class="form-control">
-                        <span *ngIf="isFieldRequired('nombreProyecto')" class="form-text text-danger">
-                            Este campo es obligatorio.
-                        </span>
-                        <span *ngIf="isFieldMinLength('nombreProyecto')" class="form-text text-danger">
-                            Debe tener al menos 4 caracteres.
-                        </span>
-                        <span *ngIf="isFieldPattern('nombreProyecto')" class="form-text text-danger">
-                            Debe ser en formato Aabc Aabc.
-                        </span>
-                    </div>
-        
+                <div *ngIf="selectedProject">        
                     <div class="mb-3">
                         <label for="nombreCliente">Nombre del Cliente</label>
                         <input type="text" id="nombreCliente" formControlName="nombreCliente" class="form-control">

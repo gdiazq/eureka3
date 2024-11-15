@@ -8,9 +8,11 @@ import com.iteureka.backeurekafour.service.CustomerService;
 
 import lombok.AllArgsConstructor;
 
+import java.util.Optional;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/customer")
@@ -25,4 +27,9 @@ public class CustomerController {
         return customerService.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Optional<CustomerEntity> getCustomerById(@PathVariable Long id) {
+        return customerService.findById(id);
+    }
+    
 }

@@ -8,6 +8,6 @@ export interface Proyect {
 export interface Customer {
     id?: number;
     nombre: string;
-    casa_matriz: string;
+    casa_matriz?: string;
 }
 

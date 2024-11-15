@@ -1,5 +1,7 @@
 package com.iteureka.backeurekafour.service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,5 +24,13 @@ public class CustomerServiceImpl implements CustomerService {
     public Iterable<CustomerEntity> findAll() {
         return customerRepository.findAll();
     }
+
+    //GET{id}
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<CustomerEntity> findById(Long id) {
+        return customerRepository.findById(id);
+    }
+
 
 }

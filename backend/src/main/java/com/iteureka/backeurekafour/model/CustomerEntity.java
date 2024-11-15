@@ -35,6 +35,6 @@ public class CustomerEntity  {
     @Column(nullable = false, length=255)
     private String nombre;
     
-    @Column(nullable = false, length=255)
+    @Column(length=255)
     private String casa_matriz;
 }

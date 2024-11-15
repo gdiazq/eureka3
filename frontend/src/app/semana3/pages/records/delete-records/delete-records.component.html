@@ -16,9 +16,9 @@
                                 {{ proyect.id }}
                             </option>
                         </select>
-                        <div *ngIf="deleteForm.get('id')?.touched && deleteForm.get('id')?.invalid" class="form-text text-danger">
-                            Debes seleccionar un registro para eliminar
-                        </div>
+                        <span *ngIf="isFieldRequired('nombreProyecto')" class="form-text text-danger">
+                            Este campo es obligatorio.
+                        </span>
                     </div>
                 </div>
     
