@@ -7,23 +7,24 @@
 
 ## Que se evaluara
 
-- Crea un proyecto Angular en tu equipo local. Se recomienda el uso de la última versión.
-- Este proyecto se debe relacionar con el aplicativo Spring Boot creado en la semana 2.
-- Debe agregar al sitio tres componentes:
-    - Página de inicio: permite desplegar información relacionada con el proyecto. En esta sección debe indicar de qué trata su experiencia, adjuntando alguna imagen y/o video alusivo.
-    - Listado de registros: en esta sección se debe desplegar un listado de registros de la entidad principal.
-    - Acerca de: en esta sección se deben indicar datos sobre el autor del proyecto. Queda en libertad de acción sobre el contenido; sin embargo, es importante que considere al menos una imagen o bien un video.
-- Debe crear un menú principal en cada página del sitio, que permita navegar entre componentes
-    - Es necesario que configure el enrutamiento en Angular para lograr este efecto
-- Se pide usar una librería de diseño como Bootstrap o similar
-- Todos los elementos del sitio, ya sean componentes, servicios, hojas de estilo globales o variables de entorno deben estar correctamente organizadas en el proyecto usando carpetas.
+- Trabaja en el mismo proyecto que creaste en la semana anterior.
+- Debes agregar al sitio un componente:
+    - Creación de registros: se debe incluir una ventana que permita crear un registro de la entidad principal en la base de datos.
+    - Los atributos deben estar correctamente validados (datos únicos, datos obligatorios, formato de valores, valores mínimos y máximos, etc.). Se piden al menos dos validaciones de datos, y puede implementarlas a nivel de backend y/o a nivel de frontend, pero el resultado se debe apreciar en pantalla.
+    - Además, considera que la entidad principal se relaciona con la entidad secundaria. Por lo tanto, esto se debe ver reflejado al momento de la creación.
+- En el proyecto debe existir al menos un módulo además del módulo principal.
+- Debes crear un menú principal en cada página del sitio, que permita navegar entre componentes
+    - Es necesario que configure el enrutamiento en Angular para lograr este efecto.
+- La aplicación debe permitir editar y/o eliminar un registro de la entidad principal.
+- Se pide usar una librería de diseño como Bootstrap o similar.
+- Todos los elementos del sitio ya sean componentes, servicios, hojas de estilo globales o variables de entorno deben estar correctamente organizadas en el proyecto usando carpetas.
 
 ## Alcances
 
 - Debes publicar el ejercicio en un repositorio GitHub
-- Se recomienda partir desde un repositorio vacío
-- El repositorio debe tener un README que señale los pasos para descargar, compilar y ejecutar la solución
-- Se recomienda indicar en el README las URL que permitan acceder a los endpoints, junto a datos de ejemplos que permitan ejecutarlos.
+    - Se recomienda usar el mismo repositorio de la semana anterior.
+- El repositorio debe tener un README que señale los pasos para descargar, compilar y ejecutar la solución.
+- Se recomienda indicar en el README las URL que permitan acceder al menos al sitio de inicio, y de ahí en más poder acceder a las demás secciones.
 
 ## Requisitos
 
@@ -155,7 +156,8 @@ Para ejecutar las pruebas uno debe iniciar el contenedor del docker y despues in
 
 El frontend esta realizo en angular con la CLI 18, se ocupo 2 carpetas: 
 - semana3: con carpetas como interfaces, pages y services
-- shared: components con carpetas footer, main-layout y navbar
+ - En pages/records estan los metodos principales que se piden CREATE, READ, UPDATE y DELETE 
+- shared: components con carpetas footer, main-layout y navbar 
 
 ### Sobre las rutas
 
@@ -190,7 +192,24 @@ const routes: Routes = [
             },
             {
                 path: 'records',
-                component: RecordsComponent
+                children: [
+                    {
+                        path: 'add',
+                        component: AddRecordsComponent
+                    },
+                    {
+                        path: 'get',
+                        component: GetRecordsComponent
+                    },
+                    {
+                        path: 'update',
+                        component: UpdateRecordsComponent
+                    },
+                    {
+                        path: 'delete',
+                        component: DeleteRecordsComponent
+                    }
+                ]
             }
         ]
     }
@@ -201,19 +220,29 @@ const routes: Routes = [
 
 No son necesarios ya que si se genera el docker con docker-compose la base de datos ya tendra datos en BBDD, aunque se usaron estos datos
 ```sql
-INSERT INTO clientes (nombre, casa_matriz)
+INSERT INTO proyectos (nombre)
 VALUES
-    ('Cliente A', 'Casa Matriz A'),
-    ('Cliente B', 'Casa Matriz B'),
-    ('Cliente C', 'Casa Matriz C'),
-    ('Cliente D', 'Casa Matriz D'),
-    ('Cliente E', 'Casa Matriz E');
+    ('Proyecto Alpha'),
+    ('Proyecto Beta'),
+    ('Proyecto Gamma'),
+    ('Proyecto Delta'),
+    ('Proyecto Epsilon');
 
-INSERT INTO proyectos (cliente_id, nombre)
+INSERT INTO clientes (proyecto_id, nombre, casa_matriz)
 VALUES
-    (1, 'Proyecto Alpha'),
-    (2, 'Proyecto Beta'),
-    (3, 'Proyecto Gamma'),
-    (4, 'Proyecto Delta'),
-    (5, 'Proyecto Epsilon');
+    (1, 'GlobalTech Solutions', 'Tecnologia Innovadora US'),
+    (1, 'HyperByte Enterprises', 'Byte Corporation US'),
+    (1, 'QuantumData Systems', 'Quantum Tech Hub'),
+    (2, 'RedNet Consulting', 'RedNex Global US'),
+    (2, 'Futurity Innovations', 'Futuris Co'),
+    (2, 'TechSphere Group', 'Sphere Technologies'),
+    (3, 'CyberSolutions Network', 'NetWorx Innovations'),
+    (3, 'BlueCloud Technologies', 'CloudMasters WEB ES'),
+    (3, 'NextGen Consulting', 'Next Generation Technologies'),
+    (4, 'Stratos Enterprises', 'StratNet Consulting CDN'),
+    (4, 'XenoTech Industries', 'Xenotech Systems Limited'),
+    (4, 'Digix Technologies', 'DigitalX Ventures Amplified'),
+    (5, 'InfoTronics Solutions', 'InfoTech Global Group'),
+    (5, 'Maximus Technologies', 'MaxTech Solutions Inc'),
+    (5, 'CloudStrive Consulting', 'StriveCloud Technologies Worldwide');
 ```
