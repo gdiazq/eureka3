@@ -62,24 +62,17 @@ public class ProjectServiceImpl implements ProjectService {
             throw new RuntimeException("Proyecto no encontrado");
         }
         ProjectEntity existingProject = existingProjectOpt.get();
-    
-        // Actualiza el nombre del proyecto
         existingProject.setNombre(projectEntity.getNombre());
-    
-        // Actualiza los clientes
         if (projectEntity.getClientes() != null) {
             List<CustomerEntity> updatedCustomers = new ArrayList<>();
             for (CustomerEntity customer : projectEntity.getClientes()) {
-                // Busca cada cliente por ID
                 Optional<CustomerEntity> existingCustomerOpt = customerRepository.findById(customer.getId());
                 if (existingCustomerOpt.isPresent()) {
                     CustomerEntity existingCustomer = existingCustomerOpt.get();
-                    // Actualiza los campos del cliente
                     existingCustomer.setNombre(customer.getNombre());
                     existingCustomer.setCasa_matriz(customer.getCasa_matriz());
                     updatedCustomers.add(existingCustomer);
                 } else {
-                    // Si el cliente no existe, puedes decidir si lanzas un error o lo ignoras
                     throw new RuntimeException("Cliente con ID " + customer.getId() + " no encontrado");
                 }
             }

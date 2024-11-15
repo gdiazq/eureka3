@@ -39,7 +39,7 @@ public class ProjectController {
     @PostMapping
     public ResponseEntity<Void> createProjectWithCustomers(@RequestBody ProjectEntity project) {
         projectService.createProjectWithCustomer(project);
-        return ResponseEntity.ok().build(); // Devuelve un 200 OK si se crea correctamente
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}")

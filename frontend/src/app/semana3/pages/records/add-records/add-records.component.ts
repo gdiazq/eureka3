@@ -18,7 +18,7 @@ export class AddRecordsComponent implements OnInit {
         id: ['', [Validators.required, Validators.min(1)]],
         nombreProyecto: ['', [ Validators.required, Validators.minLength(4), Validators.pattern( this.validatorService.nameProyectPattern) ]],
         nombreCliente: ['', [ Validators.required ]],
-        casa_matriz: ['', [ Validators.required, Validators.minLength(4), Validators.pattern( this.validatorService.casaMatrizPattern) ]],
+        casa_matriz: ['', [ Validators.required, Validators.minLength(4) ]],
     });
 
     public proyects: Proyect[] = [];
@@ -67,7 +67,6 @@ export class AddRecordsComponent implements OnInit {
                     this.selectedCustomer = data;
                     this.myForm.patchValue({
                         nombreCliente: data.nombre,
-                        nombreProyecto: data.nombre,
                         casa_matriz: data.casa_matriz
                     });
                 },
