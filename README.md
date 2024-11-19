@@ -32,7 +32,7 @@
 - Maven 3.x
 - Spring Boot 3.x
 - Mockito
-- Junit5
+- JUnit5
 - Docker
 - Angular CLI 17++
 
